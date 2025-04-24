@@ -11,15 +11,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.util.Duration;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HelloController {
+public class HelloController3 {
 
     // FXML elements
     @FXML private ImageView imageView2;
@@ -135,8 +132,8 @@ public class HelloController {
     @FXML
     private void handleNext() {
         try {
-            // Load the next stage (e.g., game2.fxml for level 2)
-            HelloApplication.loadScene("game2.fxml");  // Replace "game2.fxml" with the actual file name for the next level
+            // Ensure the correct path to game3.fxml
+            HelloApplication.loadScene("start.fxml");  // Ensure the path is correct
         } catch (IOException e) {
             e.printStackTrace();
         }
