@@ -1,5 +1,7 @@
 package com.example.game;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,105 +10,119 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class HelloController {
 
-    @FXML
-    private ImageView imageView2;
-
-    @FXML
-    private Pane pane;
-
-    @FXML
-    private Button submitButton;
-
-    @FXML
-    private Button retryButton;
-
-    @FXML
-    private Label messageLabel;
+    @FXML private ImageView imageView2;
+    @FXML private Pane pane;
+    @FXML private Button submitButton;
+    @FXML private Button NextButton;
+    @FXML private Label messageLabel;
+    @FXML private Label timerLabel;
 
     private final List<Circle> userSelections = new ArrayList<>();
     private final List<Circle> correctAreas = new ArrayList<>();
 
+    private Timeline timeline;
+    private int timeSeconds = 0;
+
     @FXML
     public void initialize() {
-        // Define the 3 correct difference areas (example positions)
-        correctAreas.add(new Circle(465, 300, 25));  // x, y, radius
+        correctAreas.add(new Circle(465, 300, 25));
         correctAreas.add(new Circle(602, 262, 30));
         correctAreas.add(new Circle(698, 250, 20));
 
         messageLabel.setText("");
+        timerLabel.setText(formatTime(0));
+        startStopwatch();
+    }
 
-        // Add circles to the pane to visualize the correct areas (for debugging)
-        /*for (Circle circle : correctAreas) {
-            circle.setStyle("-fx-fill: rgba(255, 0, 0, 0.5); -fx-stroke: red; -fx-stroke-width: 2;");
-            pane.getChildren().add(circle); // Add the circle to the Pane
-        }*/
+    private void startStopwatch() {
+        timeSeconds = 0;
+        timerLabel.setText(formatTime(timeSeconds));
+
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            timeSeconds++;
+            timerLabel.setText(formatTime(timeSeconds));
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+
+    private String formatTime(int totalSeconds) {
+        int mins = totalSeconds / 60;
+        int secs = totalSeconds % 60;
+        return String.format("%02d:%02d", mins, secs);
     }
 
     @FXML
     private void handleImageClick(MouseEvent event) {
         if (event.getSource() == imageView2) {
-            // Get the relative position of the mouse click on the image
             double clickX = event.getX();
             double clickY = event.getY();
-
-            // Adjust to the pane coordinates
             double imageViewX = imageView2.getLayoutX();
             double imageViewY = imageView2.getLayoutY();
-
-            // Correct the selected position to match the imageView's absolute position
             double adjustedX = clickX + imageViewX;
             double adjustedY = clickY + imageViewY;
 
-            // Create a marker for the user's selection
             Circle marker = new Circle(adjustedX, adjustedY, 10, Color.RED);
             userSelections.add(marker);
-            pane.getChildren().add(marker);  // Add the selection circle to the Pane
+            pane.getChildren().add(marker);
         }
     }
 
     @FXML
     private void handleSubmit() {
-        int found = 0;
+        if (timeline != null) {
+            timeline.stop();
+        }
 
-        // Check if each selected circle is within a correct area
+        int found = 0;
         for (Circle correct : correctAreas) {
             for (Circle selected : userSelections) {
                 double dx = selected.getCenterX() - correct.getCenterX();
                 double dy = selected.getCenterY() - correct.getCenterY();
                 double distance = Math.sqrt(dx * dx + dy * dy);
-
                 if (distance <= correct.getRadius()) {
                     found++;
-                    break;  // No need to check other selected areas for this correct one
+                    break;
                 }
             }
         }
 
-        // Provide feedback to the user
+        // Show in UI
         if (found == correctAreas.size()) {
-            messageLabel.setText("🎉 Congratulations! You found all differences!");
+            messageLabel.setText("🎉 You found all differences!");
             messageLabel.setTextFill(Color.GREEN);
         } else {
-            messageLabel.setText("😕 You found " + found + " out of " + correctAreas.size() + " differences.");
+            messageLabel.setText("😕 You found " + found + " out of " + correctAreas.size());
             messageLabel.setTextFill(Color.ORANGE);
         }
-    }
 
+        // Print to terminal
+        System.out.println("✅ Found " + found + " out of " + correctAreas.size() + " differences.");
+        System.out.println("⏱️ Time taken: " + formatTime(timeSeconds));
+    }
+/*
     @FXML
     private void handleRetry() {
-        // Clear all user selections
         for (Circle c : userSelections) {
             pane.getChildren().remove(c);
         }
         userSelections.clear();
 
-        // Clear message and reset the game
+        if (timeline != null) {
+            timeline.stop();
+        }
+
+        timeSeconds = 0;
+        submitButton.setDisable(false);
         messageLabel.setText("");
-    }
+        timerLabel.setText(formatTime(0));
+        startStopwatch();
+    }*/
 }

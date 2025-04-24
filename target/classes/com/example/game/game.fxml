@@ -27,13 +27,16 @@
                 </ImageView>
 
                 <!-- Message Label -->
-                <Label fx:id="messageLabel" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="761.0" style="-fx-font-size: 14px; -fx-text-fill: #555;" text="" />
+                <Label fx:id="messageLabel" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="399.0" style="-fx-font-size: 14px; -fx-text-fill: #555;" text="" />
 
                 <!-- Submit Button -->
                 <Button fx:id="submitButton" layoutX="183.0" layoutY="367.0" onAction="#handleSubmit" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Submit" />
 
                 <!-- Retry Button -->
                 <Button fx:id="retryButton" layoutX="535.0" layoutY="367.0" onAction="#handleRetry" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Retry" />
+                <!-- Timer Label -->
+                <Label fx:id="timerLabel" alignment="CENTER" layoutX="667.0" layoutY="14.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" text="00:00" />
+
             </children>
         </Pane>
     </children>
