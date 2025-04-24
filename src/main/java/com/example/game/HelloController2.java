@@ -36,13 +36,21 @@ public class HelloController2 {
     @FXML
     public void initialize() {
         // Initialize the correct areas where differences are located
-        correctAreas.add(new Circle(465, 300, 25));  // Example coordinates
-        correctAreas.add(new Circle(602, 262, 30));
-        correctAreas.add(new Circle(698, 250, 20));
+        correctAreas.add(new Circle(460, 180, 25));  // Example coordinates
+        correctAreas.add(new Circle(620, 250, 20));
+        correctAreas.add(new Circle(630, 160, 25));
 
         // Reset message and timer
         messageLabel.setText("");
         timerLabel.setText(formatTime(0));
+
+       /* //Add circles to the pane to visualize the correct areas (for debugging)
+        for (Circle circle : correctAreas) {
+            circle.setStyle("-fx-fill: rgba(255, 0, 0, 0.5); -fx-stroke: red; -fx-stroke-width: 2;");
+            pane.getChildren().add(circle); // Add the circle to the Pane
+        }
+        timerLabel.setText(formatTime(0));
+*/
 
         // Start the stopwatch
         startStopwatch();

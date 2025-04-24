@@ -37,13 +37,15 @@ public class HelloController3 {
     @FXML
     public void initialize() {
         // Initialize the correct areas where differences are located
-        correctAreas.add(new Circle(465, 300, 25));  // Example coordinates
-        correctAreas.add(new Circle(602, 262, 30));
-        correctAreas.add(new Circle(698, 250, 20));
+        correctAreas.add(new Circle(475, 90, 50));  // Example coordinates
+        correctAreas.add(new Circle(752, 285, 30));
+        correctAreas.add(new Circle(618, 100, 25));
+        correctAreas.add(new Circle(512, 184, 18));
+        correctAreas.add(new Circle(585, 200, 20));
 
         // Reset message and timer
         messageLabel.setText("");
-        timerLabel.setText(formatTime(0));
+
 
         // Start the stopwatch
         startStopwatch();
