@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.HelloController">
+<AnchorPane style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.HelloController3">
     <children>
         <Pane fx:id="pane" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10;">
             <children>
@@ -15,14 +15,14 @@
                 <!-- Left Image (Original) -->
                 <ImageView fx:id="imageView1" fitHeight="316.0" fitWidth="350.0" layoutX="25.0" layoutY="42.0">
                     <image>
-                        <Image url="@differences%20in%20dog%20at%20park%20main.jpg" />
+                        <Image url="@brush_original.jpg" />
                     </image>
                 </ImageView>
 
                 <!-- Right Image (User can click here) -->
                 <ImageView fx:id="imageView2" fitHeight="316.0" fitWidth="350.0" layoutX="425.0" layoutY="42.0" onMouseClicked="#handleImageClick">
                     <image>
-                        <Image url="@spot%203%20differences%20in%20dog%20at%20park%20picture%20fake.jpg" />
+                        <Image url="@brush_fake.jpg" />
                     </image>
                 </ImageView>
 
@@ -30,19 +30,18 @@
                 <Label fx:id="messageLabel" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="399.0" style="-fx-font-size: 14px; -fx-text-fill: #555;" text="" />
 
                 <!-- Submit Button -->
-                <Button fx:id="submitButton" layoutX="610.0" layoutY="367.0" onAction="#handleSubmit" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Submit" />
+                <Button fx:id="submitButton" layoutX="624.0" layoutY="367.0" onAction="#handleSubmit" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Submit" />
 
                 <!-- Retry Button -->
-                <Button fx:id="nextButton" layoutX="684.0" layoutY="367.0" onAction="#handleNext" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Next Stage" />
+                <Button fx:id="NextButton" layoutX="694.0" layoutY="367.0" onAction="#handleNext" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Next Stage" />
                 <!-- Timer Label -->
                 <Label fx:id="timerLabel" alignment="CENTER" layoutX="667.0" layoutY="14.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" text="00:00" />
 
-
                 <!-- Hint Button -->
-                <Button fx:id="hintButton" layoutX="34.0" layoutY="367.0" onAction="#handleHint" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Hint" />
+                <Button fx:id="hintButton" layoutX="26.0" layoutY="367.0" onAction="#handleHint" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Hint" />
 
                 <!-- Hint Label -->
-                <Label fx:id="hintLabel" layoutX="75.0" layoutY="367.0" prefHeight="25.0" prefWidth="527.0" style="-fx-font-size: 13px; -fx-text-fill: #333; -fx-font-style: italic;" text="" />
+                <Label fx:id="hintLabel" layoutX="76.0" layoutY="367.0" prefHeight="25.0" prefWidth="527.0" style="-fx-font-size: 13px; -fx-text-fill: #333; -fx-font-style: italic;" text="" />
 
             </children>
         </Pane>

@@ -25,6 +25,7 @@ public class HelloController3 {
     @FXML private Button nextButton;
     @FXML private Label messageLabel;
     @FXML private Label timerLabel;
+    @FXML private Label hintLabel;
 
     // List to track user selections and correct areas
     private final List<Circle> userSelections = new ArrayList<>();
@@ -50,6 +51,11 @@ public class HelloController3 {
         // Start the stopwatch
         startStopwatch();
     }
+    @FXML
+    private void handleHint() {
+        hintLabel.setText("Look near the dog's tail and the trees in the background.");
+    }
+
 
     // Start the stopwatch to track game time
     private void startStopwatch() {
@@ -127,8 +133,13 @@ public class HelloController3 {
 
         // Print the result to the terminal
         System.out.println("✅ Found " + found + " out of " + correctAreas.size() + " differences.");
+        System.out.println("Missed: " + (correctAreas.size() - found));
         System.out.println("⏱️ Time taken: " + formatTime(timeSeconds));
+
+        // Hide the submit button after first use
+        submitButton.setVisible(false);
     }
+
 
     // Handle the next button to go to the next stage of the game
     @FXML

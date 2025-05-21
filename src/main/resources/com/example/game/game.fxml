@@ -30,12 +30,19 @@
                 <Label fx:id="messageLabel" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="399.0" style="-fx-font-size: 14px; -fx-text-fill: #555;" text="" />
 
                 <!-- Submit Button -->
-                <Button fx:id="submitButton" layoutX="183.0" layoutY="367.0" onAction="#handleSubmit" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Submit" />
+                <Button fx:id="submitButton" layoutX="610.0" layoutY="367.0" onAction="#handleSubmit" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Submit" />
 
                 <!-- Retry Button -->
-                <Button fx:id="nextButton" layoutX="535.0" layoutY="367.0" onAction="#handleNext" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Next Stage" />
+                <Button fx:id="nextButton" layoutX="684.0" layoutY="367.0" onAction="#handleNext" style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Next Stage" />
                 <!-- Timer Label -->
                 <Label fx:id="timerLabel" alignment="CENTER" layoutX="667.0" layoutY="14.0" prefWidth="80.0" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" text="00:00" />
+
+
+                <!-- Hint Button -->
+                <Button fx:id="hintButton" layoutX="34.0" layoutY="367.0" onAction="#handleHint" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 8;" text="Hint" />
+
+                <!-- Hint Label -->
+                <Label fx:id="hintLabel" layoutX="75.0" layoutY="367.0" prefHeight="25.0" prefWidth="527.0" style="-fx-font-size: 13px; -fx-text-fill: #333; -fx-font-style: italic;" text="" />
 
             </children>
         </Pane>
