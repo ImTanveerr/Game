@@ -1,9 +1,11 @@
 package com.example.game;
+
 import javafx.fxml.FXML;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -23,14 +25,25 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(loader.load());
         mainStage.setScene(scene);
     }
+
     @FXML
-    private void handleStartGame() {
+    private void handleFindDifference() {
         try {
-            HelloApplication.loadScene("game.fxml");  // Load level 1 when Start is clicked
+            HelloApplication.loadScene("game.fxml");  // Load find difference game scene
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleMemoryGame() {
+        try {
+            HelloApplication.loadScene("MemoryGame.fxml");  // Load memory game scene
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         launch();
     }

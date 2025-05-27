@@ -28,8 +28,12 @@ public class HelloController {
     @FXML private Button nextButton;
     @FXML private Label messageLabel;
     @FXML private Label timerLabel;
-    @FXML
-    private Label hintLabel;
+    @FXML private Label hintLabel;
+    @FXML private Label player1Label;
+    @FXML private Label totalDifference;
+    @FXML private Label averageTime;
+    @FXML private Label difficulty;
+    @FXML private Label player2Label;
 
 
 
@@ -155,4 +159,12 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+
+
+    // Example update
+    public void updateScores(int p1, int p2) {
+        player1Label.setText("Player 1: " + p1 + " pts");
+        player2Label.setText("Player 2: " + p2 + " pts");
+    }
+
 }
