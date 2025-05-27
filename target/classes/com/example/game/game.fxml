@@ -9,7 +9,7 @@
 
 <AnchorPane style="-fx-background-color: #f4f4f4;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.HelloController">
     <children>
-        <Pane fx:id="pane" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10;">
+        <Pane fx:id="pane" prefHeight="400.0" prefWidth="1040.0" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-radius: 10; -fx-background-radius: 10;">
             <children>
 
                 <!-- Left Image (Original) -->
@@ -43,6 +43,30 @@
 
                 <!-- Hint Label -->
                 <Label fx:id="hintLabel" layoutX="75.0" layoutY="367.0" prefHeight="25.0" prefWidth="527.0" style="-fx-font-size: 13px; -fx-text-fill: #333; -fx-font-style: italic;" text="" />
+
+                <!-- Player Progress Box -->
+                <Pane layoutX="824.0" layoutY="86.0" prefHeight="80.0" prefWidth="170.0" style="-fx-background-color: #FFC0CB; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 6; -fx-border-radius: 6;">
+                    <children>
+                        <Label layoutX="10.0" layoutY="5.0" style="-fx-font-weight: bold; -fx-text-fill: #00796B;" text="Player Progress" />
+                        <Label fx:id="player1Label" layoutX="10.0" layoutY="25.0" text="Player 1: 0 pts" />
+                        <Label fx:id="player2Label" layoutX="10.0" layoutY="45.0" text="Player 2: 0 pts" />
+                    </children>
+                </Pane>
+
+                <!-- Puzzle Info Box -->
+                <Pane layoutX="824.0" layoutY="207.0" prefHeight="100.0" prefWidth="170.0"
+                      style="-fx-background-color: #FFC0CB; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 6; -fx-border-radius: 6;">
+                    <children>
+                        <Label layoutX="10.0" layoutY="10.0" text="Total Differences:" style="-fx-font-weight: bold;" />
+                        <Label fx:id="totalDifference" layoutX="130.0" layoutY="10.0" text="3" />
+
+                        <Label layoutX="10.0" layoutY="35.0" text="Average Time:" style="-fx-font-weight: bold;" />
+                        <Label fx:id="averageTime" layoutX="130.0" layoutY="35.0" text="40s" />
+
+                        <Label layoutX="10.0" layoutY="60.0" text="Difficulty:" style="-fx-font-weight: bold;" />
+                        <Label fx:id="difficulty" layoutX="130.0" layoutY="60.0" text="Easy" />
+                    </children>
+                </Pane>
 
             </children>
         </Pane>
