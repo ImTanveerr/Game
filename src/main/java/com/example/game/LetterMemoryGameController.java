@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MemoryGameController {
+public class LetterMemoryGameController {
 
     @FXML
     private GridPane cardGrid;
@@ -31,9 +31,9 @@ public class MemoryGameController {
     private Button firstSelected = null;
     private Button secondSelected = null;
 
-    private List<Color> cardColors = new ArrayList<>();
+    private List<Character> cardLetters = new ArrayList<>();
 
-    private final Color cardBackColor = Color.web("#444444");  // Dark gray back color
+    private final String cardBackText = "?";
 
     private boolean playerOneTurn = true;
     private int player1Matches = 0;
@@ -51,38 +51,33 @@ public class MemoryGameController {
 
     private void setupCards() {
         cardGrid.getChildren().clear();
-        cardColors.clear();
+        cardLetters.clear();
 
-        // 8 distinct colors (for 16 cards - pairs)
-        Color[] baseColors = new Color[] {
-                Color.RED, Color.GREEN, Color.BLUE, Color.ORANGE,
-                Color.PURPLE, Color.CYAN, Color.YELLOW, Color.PINK
-        };
+        // 8 distinct letters (for 16 cards - pairs)
+        char[] baseLetters = new char[] {'A','B','C','D','E','F','G','H'};
 
-        for (Color c : baseColors) {
-            cardColors.add(c);
-            cardColors.add(c);
+        for (char ch : baseLetters) {
+            cardLetters.add(ch);
+            cardLetters.add(ch);
         }
-        Collections.shuffle(cardColors);
+        Collections.shuffle(cardLetters);
 
         int index = 0;
         for (int row = 0; row < 4; row++) {
             for (int col = 0; col < 4; col++) {
-                Button cardButton = createCardButton(cardColors.get(index));
+                Button cardButton = createCardButton(cardLetters.get(index));
                 cardGrid.add(cardButton, col, row);
                 index++;
             }
         }
     }
 
-    private Button createCardButton(Color color) {
-        Button button = new Button();
+    private Button createCardButton(char letter) {
+        Button button = new Button(cardBackText);
         button.setPrefSize(160, 70);
+        button.setStyle("-fx-font-size: 24px; -fx-background-color: #444444; -fx-text-fill: white; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 6;");
 
-        // Initially card back color
-        button.setStyle("-fx-background-color: " + toRgbString(cardBackColor) + "; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 6;");
-
-        button.setUserData(color);
+        button.setUserData(letter);
         button.setDisable(false);
 
         button.setOnAction(e -> {
@@ -90,8 +85,8 @@ public class MemoryGameController {
             if (button == firstSelected) return; // same card clicked
             if (button.isDisable()) return; // already matched
 
-            // Show actual color
-            button.setStyle("-fx-background-color: " + toRgbString(color) + "; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 6;");
+            // Reveal letter
+            button.setText(String.valueOf(letter));
 
             if (firstSelected == null) {
                 firstSelected = button;
@@ -107,10 +102,10 @@ public class MemoryGameController {
     }
 
     private void checkForMatch() {
-        Color c1 = (Color) firstSelected.getUserData();
-        Color c2 = (Color) secondSelected.getUserData();
+        char c1 = (char) firstSelected.getUserData();
+        char c2 = (char) secondSelected.getUserData();
 
-        if (c1.equals(c2)) {
+        if (c1 == c2) {
             matchesFound++;
             matchesFoundLabel.setText("• Matches Found: " + matchesFound);
 
@@ -135,9 +130,9 @@ public class MemoryGameController {
         } else {
             messageLabel.setText("No match! Switching turn...");
             Timeline pause = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-                // Flip back
-                firstSelected.setStyle("-fx-background-color: " + toRgbString(cardBackColor) + "; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 6;");
-                secondSelected.setStyle("-fx-background-color: " + toRgbString(cardBackColor) + "; -fx-border-color: black; -fx-border-width: 1; -fx-background-radius: 6;");
+                // Hide letters again
+                firstSelected.setText(cardBackText);
+                secondSelected.setText(cardBackText);
                 resetSelection();
                 switchPlayer();
             }));
@@ -197,9 +192,10 @@ public class MemoryGameController {
         startTimer();
     }
 
+
     @FXML
     private void handleHint() {
-        messageLabel.setText("Hint: Try to remember the colors and their positions!");
+        messageLabel.setText("Hint: Try to remember the letters and their positions!");
     }
 
     @FXML
@@ -211,16 +207,9 @@ public class MemoryGameController {
     private void handleNext() {
         try {
             // Ensure the correct path to game3.fxml
-            HelloApplication.loadScene("MemoryGame2.fxml");  // Ensure the path is correct
+            HelloApplication.loadScene("start.fxml");  // Ensure the path is correct
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private String toRgbString(Color c) {
-        int r = (int)(c.getRed() * 255);
-        int g = (int)(c.getGreen() * 255);
-        int b = (int)(c.getBlue() * 255);
-        return "rgb(" + r + "," + g + "," + b + ")";
     }
 }

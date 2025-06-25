@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         mainStage = stage;
         loadScene("start.fxml");
-        stage.setTitle("Spot the Difference");
+        stage.setTitle("Puzzle Game");
         stage.show();
     }
 
